@@ -140,10 +140,7 @@ def modificar():
             while True:
                 cls()
                 x=''
-                if lista[indice][10]=='1':
-                    x="Encontrado"
-                else:
-                    x="No encontrado"
+                x=findx(lista[indice][10])
                 separador=getsep(x,lista[indice][9],indice)
                 print ("\nBusqueda de Articulos\n\n")
                 print ("\tEncargado del articulo: "+lista[indice][11]+"\n")
@@ -793,6 +790,7 @@ def restaura():
     lista=list(entrada) 
     file.close()
 
+    
 #programa principal
 maximiza()
 if sys.platform == 'win32':
@@ -875,7 +873,19 @@ if os.path.isfile("resources\\data.csv"):
             while True:
                 opcion=obtenertecla()
                 if opcion=='1' or opcion=='2':
-                    export(opcion)
+                    print("\n\tEsta accion exportara los articulos, desea continuar?\n")
+                    print ("\t\tEnter => Aceptar\n")
+                    print ("\t\tEscape => Cancelar\n")
+                    while True:
+                        a=obtenertecla()
+                        if a=="Enter":
+                            export(opcion)
+                            cls()
+                            print("\n\n\tArticulos exportados")
+                            a=input("\n\tPresione enter para continuar...")
+                            break
+                        elif a=="Escape":
+                            break
                     break
                 else:
                     break
